@@ -20,14 +20,16 @@ function App(props) {
           render={() =>
             <Dialogs
               dialogsData={props.state.dialogsPage.dialogsData}
-              messagesData={props.state.dialogsPage.messagesData} />} />
+              messagesData={props.state.dialogsPage.messagesData}
+              newMessageBody={props.state.dialogsPage.newMessageBody}
+              dispatch={props.dispatch} />} />
         <Route path='/profile'
           render={() =>
             <Profile
               posts={props.state.postsPage.postData}
               newPostText={props.state.postsPage.newPostText}
-              addPost={store.addPost.bind(store)}
-              updateNewPostText={store.updateNewPostText.bind(store)} />} />
+              dispatch={props.dispatch}
+              />} />
       </div>
     </div>
   );

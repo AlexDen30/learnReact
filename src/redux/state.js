@@ -1,3 +1,8 @@
+import dialogsReducer from "./dialogs-reducer";
+import postsReducer from "./posts-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
+
 let store = {
   _state: {
     dialogsPage: {
@@ -8,10 +13,11 @@ let store = {
         { name: 'Dasha', id: '4' },
       ],
       messagesData: [
-        { msg: 'Hello!' },
-        { msg: 'Nice, bro!' },
-        { msg: 'kek!' },
+        { msg: 'Hello!', id: '1' },
+        { msg: 'Nice, bro!', id: '2' },
+        { msg: 'kek!', id: '3' },
       ],
+      newMessageBody: '',
     },
 
     postsPage: {
@@ -19,8 +25,10 @@ let store = {
         { message: 'Hello, everyone!', likesCount: 10 },
         { message: 'Hi, dude', likesCount: 5 },
       ],
-      newPostText: 'bla-bla-bla',
-    }
+      newPostText: '',
+    },
+
+    sidebar: {},
   },
 
   _callSubscriber() {
@@ -31,26 +39,20 @@ let store = {
     return this._state;
   },
 
-  addPost() {
-    let newPost = {
-      message: this._state.postsPage.newPostText,
-      likesCount: 0,
-    };
-    this._state.postsPage.postData.push(newPost);
-    this._state.postsPage.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateNewPostText(newText) {
-    this._state.postsPage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-
   subscribe(observ) {
     this._callSubscriber = observ;
+  },
+
+  dispatch(action) {
+
+    this._state.postsPage = postsReducer(this._state.postsPage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    
+    this._callSubscriber(this._state);
   }
 }
 
-
-
 export default store;
+
+window.store = store

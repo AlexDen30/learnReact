@@ -16,10 +16,10 @@ const MyPosts = (props) => {
   return (
     <div>
       My Posts
-      <Paste 
-        addPost={props.addPost}
-        updateNewPostText={props.updateNewPostText}
-        newPostText={props.newPostText} />
+      <Paste
+        newPostText={props.newPostText}
+        dispatch={props.dispatch}
+      />
       <div className={s.posts}>
         {postElements}
       </div>

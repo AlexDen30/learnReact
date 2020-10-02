@@ -1,16 +1,15 @@
 import React from 'react';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../../redux/posts-reducer';
 import s from './Paste.module.css';
 
 const Paste = (props) => {
 
   let onPasteClick = () => {
-    props.dispatch(addPostActionCreator());
+    props.addPost();  
   }
 
   let onPostChange = (e) => {
     let text = e.target.value;
-    props.dispatch(updateNewPostActionCreator(text));
+    props.updateNewPost(text); 
   }
 
   return (

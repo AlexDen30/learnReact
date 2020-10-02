@@ -3,25 +3,22 @@ import Post from './Post/Post'
 import s from './MyPosts.module.css';
 import Paste from './Paste/Paste';
 import store from '../../../redux/state';
+import PasteContainer from './Paste/PasteContainer';
 
 
 
 
 const MyPosts = (props) => {
 
-  let postElements = props.posts.map((post) =>
-    <Post msg={post.message} likes={post.likesCount} />
-  )
-
   return (
     <div>
       My Posts
-      <Paste
+      <PasteContainer
         newPostText={props.newPostText}
         dispatch={props.dispatch}
       />
       <div className={s.posts}>
-        {postElements}
+        {props.postElements}
       </div>
     </div>
   )

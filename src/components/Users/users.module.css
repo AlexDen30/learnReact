@@ -5,6 +5,11 @@
     padding: 10px;
 }
 
-.text {
+.spanPage .selectedPage {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.spanPage {
     padding: 5px;
 }

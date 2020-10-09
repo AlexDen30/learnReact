@@ -8,6 +8,7 @@ const Dialogs = (props) => {
     }
 
     let onNewMessageChange = (e) => {
+        debugger;
         let body = e.target.value;
         props.updateNewMessageBody(body);
     }

@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
-
+import ProfileContainer from './components/Profile/ProfileContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 function App(props) {
@@ -20,9 +19,13 @@ function App(props) {
           render={() =>
             <DialogsContainer />}
         />
-        <Route path='/profile'
+        <Route path='/profile/:userId?'
           render={() =>
-            <Profile />}
+            <ProfileContainer />}
+        />
+        <Route path='/users'
+          render={() =>
+            <UsersContainer />}
         />
       </div>
     </div>

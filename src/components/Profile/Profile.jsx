@@ -10,7 +10,7 @@ const Profile = (props) => {
   return (
     <div>
       <HorizonePic />
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile} />
       <MyPostsContainer/>
     </div>
   )

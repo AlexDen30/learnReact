@@ -1,3 +1,5 @@
+import { authAPI } from "../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA' 
 const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING';
 
@@ -48,6 +50,19 @@ const authReducer = (state = initialState, action) => {
         default:
             return state;
     }
+}
+
+export const setAuthUserDataThunkCreator = () => {
+
+    return (dispatch) => {
+        authAPI.me()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login));
+                }   
+            });
+    }
+    
 }
 
 export default authReducer;

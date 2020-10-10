@@ -3,8 +3,9 @@ import dialogsReducer from "./dialogs-reducer";
 import postsReducer from "./posts-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
+import thunkMiddleware from "redux-thunk";
 
-const { createStore, combineReducers } = require("redux");
+const { createStore, combineReducers, applyMiddleware } = require("redux");
 
 let reducers = combineReducers({
     postsPage: postsReducer,
@@ -14,7 +15,7 @@ let reducers = combineReducers({
     auth: authReducer,
 });
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 

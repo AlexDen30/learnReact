@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
-import {setAuthUserDataThunkCreator } from '../../redux/auth-reducer'
-import { authAPI } from '../../api/api';
+import {logoutThunkCreator, setAuthUserDataThunkCreator } from '../../redux/auth-reducer'
 
 class HeaderContainer extends React.Component {
 
@@ -28,7 +26,11 @@ let mapDispatchToProps = (dispatch) => {
     return {
         setAuthUserData: () => {
             return dispatch(setAuthUserDataThunkCreator());
-        }
+        },
+
+        logout: () => {
+            return dispatch(logoutThunkCreator());
+        },
     }
 }
 

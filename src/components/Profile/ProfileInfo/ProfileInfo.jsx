@@ -1,6 +1,7 @@
 import React from 'react';
 import Loader from '../../Loader/Loader';
 import s from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
 
@@ -10,7 +11,8 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div>
+            <div className={s.descriptionBlock}>
+                <ProfileStatus status = {props.status} updateStatus={props.updateStatus} />
                 <img className={s.usersPhoto} src={props.profile.photos.large} />
                 <div className={s.text}>{props.profile.fullName}</div>
                 <div className={s.text}>{props.profile.aboutMe}</div>

@@ -1,25 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../../redux/posts-reducer';
-import MyPosts from '../MyPosts';
+import { addPostActionCreator } from '../../../../redux/posts-reducer';
 import Paste from './Paste';
 
 
 
 let mapStateToProps = (state) => {
   return {
-      newPostText: state.postsPage.newPostText,
+      
   }
 }
 
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewPost: (text) => {
-      dispatch(updateNewPostActionCreator(text));
-    },
-    addPost: () => {
-      dispatch(addPostActionCreator());
+    addPost: (post) => {
+      dispatch(addPostActionCreator(post));
     }
   }
 }

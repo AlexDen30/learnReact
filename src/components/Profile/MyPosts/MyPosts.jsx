@@ -13,10 +13,7 @@ const MyPosts = (props) => {
   return (
     <div>
       My Posts
-      <PasteContainer
-        newPostText={props.newPostText}
-        dispatch={props.dispatch}
-      />
+      <PasteContainer/>
       <div className={s.posts}>
         {props.postElements}
       </div>

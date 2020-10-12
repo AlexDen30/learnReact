@@ -13,7 +13,6 @@ let mapStateToProps = (state) => {
   return {
       postElements: state.postsPage.postData.map((post) =>
       <Post msg={post.message} likes={post.likesCount} />),
-      newPostText: state.postsPage.newPostText,
   }
 }
 

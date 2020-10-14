@@ -5,7 +5,8 @@
     padding: 10px;
 }
 
-.spanPage .selectedPage {
+.selectedPage {
+    color: solid black;
     font-weight: bold;
     padding: 5px;
 }

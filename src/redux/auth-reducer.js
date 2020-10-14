@@ -1,7 +1,7 @@
 import { authAPI } from "../api/api";
 import { stopSubmit } from 'redux-form';
 
-const SET_USER_DATA = 'SET_USER_DATA' 
+const SET_USER_DATA = 'SET_USER_DATA'
 const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING';
 
 let initialState = {
@@ -46,39 +46,37 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.isFetching,
-            }    
+            }
 
         default:
             return state;
     }
 }
 
-export const setAuthUserDataThunkCreator = () => {
+export const setAuthUserDataThunkCreator = () => (dispatch) => {
 
-    return (dispatch) => {
-        authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true));
-                }   
-            });
-    }
-    
+    return authAPI.me()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true));
+            }
+        });
+
 }
 
 export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
-    
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setAuthUserDataThunkCreator());
-                } else {
-                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Err'; 
-                    dispatch(stopSubmit("login", {_error: message}));
-                }
-            });
-    }
-    
+
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserDataThunkCreator());
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Err';
+                dispatch(stopSubmit("login", { _error: message }));
+            }
+        });
+}
+
 
 
 export const logoutThunkCreator = () => {
@@ -87,11 +85,11 @@ export const logoutThunkCreator = () => {
         authAPI.logout()
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, null, null, false));    
-                }   
+                    dispatch(setAuthUserData(null, null, null, false));
+                }
             });
     }
-    
+
 }
 
 export default authReducer;
